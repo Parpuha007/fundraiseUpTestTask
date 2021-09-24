@@ -16,14 +16,14 @@
           class="fal fa-times search__clear-input"
         ></i>
       </div>
-      <div class="search__drop">
+      <button class="search__drop">
         All statuses <i class="fal fa-angle-down"></i>
-      </div>
+      </button>
       <ul class="search__statuses">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
+        <li>Status 1</li>
+        <li>Status 2</li>
+        <li>Status 3</li>
+        <li>Status 4</li>
       </ul>
     </div>
   </section>
@@ -93,8 +93,14 @@ export default {
   &__drop {
     cursor: pointer;
     transition: 0.3s;
-    &:hover {
+    border: none;
+    background-color: transparent;
+    &:hover,
+    &:focus {
       color: $green;
+    }
+    &:target {
+      outline: 1px solid $green;
     }
   }
   &__statuses {

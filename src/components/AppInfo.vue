@@ -10,9 +10,12 @@
       </div>
       <div class="info__right">
         <span class="info__id-text">ID</span>
-        <span class="info__id-value"
-          >{{ id }} <i @click="copyId" class="fal fa-clone"></i
-        ></span>
+        <div class="info__id-container">
+          <span class="info__id-value">{{ id }} </span>
+          <button class="info__copy-btn" @click="copyId">
+            <i class="fal fa-clone"></i>
+          </button>
+        </div>
       </div>
     </div>
     <div class="info__row info__bottom">
@@ -101,7 +104,6 @@ export default {
     .fa-clone {
       color: $grey;
       cursor: pointer;
-      margin-left: 9.5px;
       &:active {
         color: $green;
       }
@@ -124,6 +126,18 @@ export default {
       padding-right: 32px;
       margin-right: 32px;
     }
+  }
+  &__copy-btn {
+    border: none;
+    background-color: transparent;
+    margin-left: 9.5px;
+    &:focus i {
+      color: $green;
+    }
+  }
+  &__id-container {
+    display: flex;
+    align-items: center;
   }
 }
 .fa-dollar-sign {
