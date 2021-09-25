@@ -1,90 +1,95 @@
 <template>
-  <form action="" method="" class="form">
-    <div class="form__container">
-      <label class="form__left-side" for="designation">Designation</label>
-      <div class="form__right-side">
-        <select name="" id="designation">
-          <option selected value="Match Checkout Setting">
-            Match Checkout Setting
-          </option>
-        </select>
-      </div>
-    </div>
-    <div class="form__container">
-      <label class="form__left-side" for="goal">Goal </label>
-      <div class="form__right-side">
-        <input type="text" value="$10.00" id="goal" />
-        <select name="currency" id="currency">
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="RUB">RUB</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form__container">
-      <label class="form__left-side form__left-side_lh-decrease" for=""
-        >Default Amount</label
-      >
-      <div class="form__right-side">
-        <div class="form__radio-container">
-          <input type="radio" id="radio1" name="defAmount" />
-          <label class="form__radio-label" for="radio1"
-            >Match Checkout Setting</label
-          >
-        </div>
-        <div class="form__radio-container">
-          <input type="radio" id="radio2" checked name="defAmount" />
-          <label class="form__radio-label" for="radio2">Customize</label>
+  <form action="" @submit.prevent @reset.prevent method="" class="form">
+    <div class="form__wrapper">
+      <div class="form__container">
+        <label class="form__left-side" for="designation">Designation</label>
+        <div class="form__right-side">
+          <select name="" id="designation">
+            <option selected value="Match Checkout Setting">
+              Match Checkout Setting
+            </option>
+          </select>
         </div>
       </div>
-    </div>
-    <div class="form__container">
-      <label class="form__left-side"></label>
-      <div class="form__right-side">
-        <div class="form__checkbox-container">
-          <input type="checkbox" id="checkbox1" />
-          <label class="form__checkbox-label" for="checkbox1"
-            >Allow donor to change default currency</label
-          >
+      <div class="form__container">
+        <label class="form__left-side" for="goal">Goal </label>
+        <div class="form__right-side">
+          <input type="text" value="$10.00" id="goal" />
+          <select name="currency" id="currency">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="RUB">RUB</option>
+          </select>
+        </div>
+      </div>
+      <div class="form__container">
+        <label class="form__left-side form__left-side_lh-decrease" for="radio1"
+          >Default Amount</label
+        >
+        <div class="form__right-side">
+          <div class="form__radio-container">
+            <input type="radio" id="radio1" name="defAmount" />
+            <label class="form__radio-label" for="radio1"
+              >Match Checkout Setting</label
+            >
+          </div>
+          <div class="form__radio-container">
+            <input type="radio" id="radio2" checked name="defAmount" />
+            <label class="form__radio-label" for="radio2">Customize</label>
+          </div>
+        </div>
+      </div>
+      <div class="form__container">
+        <span class="form__left-side"></span>
+        <div class="form__right-side">
+          <div class="form__checkbox-container">
+            <input type="checkbox" id="checkbox1" />
+            <label class="form__checkbox-label" for="checkbox1"
+              >Allow donor to change default currency</label
+            >
+          </div>
+        </div>
+      </div>
+      <div class="form__container form__container_range">
+        <label
+          for="size-range"
+          class="form__left-side form__left-side_lh-decrease"
+          >Border size</label
+        >
+        <div class="form__right-side_range">
+          <input
+            v-model="borderSizeValue"
+            min="0"
+            max="3"
+            step="1"
+            type="range"
+            id="size-range"
+          />
+          <span>{{ borderSizeValue }}px</span>
+        </div>
+      </div>
+      <div class="form__container form__container_range">
+        <label
+          for="radius-range"
+          class="form__left-side form__left-side_lh-decrease"
+          >Border radius</label
+        >
+        <div class="form__right-side_range">
+          <input
+            v-model="borderRadiusValue"
+            min="0"
+            max="20"
+            step="1"
+            type="range"
+            id="radius-range"
+          />
+          <span>{{ borderRadiusValue }}px</span>
         </div>
       </div>
     </div>
-    <div class="form__container form__container_range">
-      <label
-        for="size-range"
-        class="form__left-side form__left-side_lh-decrease"
-        >Border size</label
-      >
-      <div class="form__right-side_range">
-        <input
-          v-model="borderSizeValue"
-          min="0"
-          max="3"
-          step="1"
-          type="range"
-          id="size-range"
-        />
-        <span>{{ borderSizeValue }}px</span>
-      </div>
-    </div>
-    <div class="form__container form__container_range">
-      <label
-        for="radius-range"
-        class="form__left-side form__left-side_lh-decrease"
-        >Border radius</label
-      >
-      <div class="form__right-side_range">
-        <input
-          v-model="borderRadiusValue"
-          min="0"
-          max="20"
-          step="1"
-          type="range"
-          id="radius-range"
-        />
-        <span>{{ borderRadiusValue }}px</span>
-      </div>
+    <div class="form__buttons-container">
+      <button type="submit" class="btn btn_submit">Save changes</button>
+      <button type="reset" class="btn btn_cancel">Cancel</button>
     </div>
   </form>
 </template>
@@ -97,13 +102,12 @@ export default {
     };
   },
   mounted() {
-    var inputs = document.querySelectorAll("input[type=range]");
-    console.log(inputs);
-    for (var i = 0; i < inputs.length; i++) {
-      let input = inputs[i];
-      input.oninput = function () {
-        var value = (input.value - input.min) / (input.max - input.min);
-        input.style.backgroundImage = [
+    let inputs = document.querySelectorAll("input[type=range]");
+    inputs.forEach((item) => {
+      item.oninput = () => {
+        let value = (item.value - item.min) / (item.max - item.min);
+        console.log(value);
+        item.style.backgroundImage = [
           "-webkit-gradient(",
           "linear, ",
           "left top, ",
@@ -113,16 +117,29 @@ export default {
           ")",
         ].join("");
       };
-    }
+    });
   },
 };
 </script>
 <style lang="scss">
 .form {
+  &__buttons-container {
+    display: flex;
+    border: 1px solid $border-grey;
+    box-sizing: border-box;
+    border-radius: 0px 0px 8px 8px;
+    background: $sand;
+    padding: 24px 0 24px 32px;
+  }
+  &__wrapper {
+    padding: 40px 0 40px 60px;
+  }
   &__container {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 24px;
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
     &_range {
       align-items: center;
     }
@@ -312,5 +329,47 @@ export default {
 #currency {
   display: flex;
   flex-basis: 80px;
+}
+.btn {
+  font-size: 16px;
+  max-height: 48px;
+  line-height: 24px;
+  border-radius: 6px;
+  padding: 12px 24px;
+  border: none;
+  box-sizing: border-box;
+  margin-right: 16px;
+  transition: 0.3s;
+  &_submit {
+    border: 1px solid $green;
+    background-color: $green;
+    color: #fff;
+    &:hover {
+      background-color: #fff;
+      color: $green;
+    }
+  }
+  &_cancel {
+    border: 1px solid #a9abae;
+    &:hover {
+      background-color: #ffc625;
+      border: 1px solid #ffc625;
+    }
+  }
+}
+@media screen and (max-width: 540px) {
+  .form {
+    &__wrapper {
+      padding: 0;
+    }
+    &__container {
+      flex-direction: column;
+      align-items: center;
+    }
+    &__left-side,
+    &__right-side {
+      flex-basis: unset;
+    }
+  }
 }
 </style>

@@ -13,7 +13,7 @@
         <div class="info__id-container">
           <span class="info__id-value">{{ id }} </span>
           <button class="info__copy-btn" @click="copyId">
-            <i class="fal fa-clone"></i>
+            <i title="Copy to clipboard" class="fal fa-clone"></i>
           </button>
         </div>
       </div>
@@ -50,8 +50,9 @@ export default {
     };
   },
   methods: {
-    copyId() {
+    copyId(e) {
       navigator.clipboard.writeText(this.id);
+      e.target.blur();
     },
   },
 };
@@ -131,7 +132,7 @@ export default {
     border: none;
     background-color: transparent;
     margin-left: 9.5px;
-    &:focus i {
+    &:hover i {
       color: $green;
     }
   }

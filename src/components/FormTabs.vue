@@ -1,15 +1,17 @@
 <template>
-  <ul class="tabs__list">
-    <li v-for="item in arr" :key="item.id" class="tabs__item">
-      <button
-        class="tabs__button"
-        :class="{ tabs__button_active: item.title === this.activeTab }"
-        @click="setActive"
-      >
-        {{ item.title }}
-      </button>
-    </li>
-  </ul>
+  <nav>
+    <ul class="tabs__list">
+      <li v-for="item in arr" :key="item.id" class="tabs__item">
+        <button
+          class="tabs__button"
+          :class="{ tabs__button_active: item.title === this.activeTab }"
+          @click="setActive"
+        >
+          {{ item.title }}
+        </button>
+      </li>
+    </ul>
+  </nav>
 </template>
 <script>
 export default {
@@ -38,6 +40,8 @@ export default {
     display: flex;
   }
   &__item {
+    flex-grow: 1;
+    display: flex;
   }
   &__button {
     font-weight: 600;
