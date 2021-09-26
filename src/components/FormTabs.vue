@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="tabs">
     <ul class="tabs__list">
       <li v-for="item in arr" :key="item.id" class="tabs__item">
         <button
@@ -40,7 +40,7 @@ export default {
     display: flex;
   }
   &__item {
-    flex-grow: 1;
+    position: relative;
     display: flex;
   }
   &__button {
@@ -57,6 +57,7 @@ export default {
     box-sizing: border-box;
     height: 100%;
     border: 1px solid transparent;
+    width: 100%;
     &:hover,
     &:focus {
       color: $green;
@@ -69,6 +70,30 @@ export default {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 768px) {
+  .tabs {
+    &__list {
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    &__item {
+      flex: 1 0 auto;
+    }
+  }
+}
+@media screen and (max-width: 540px) {
+  .tabs {
+    &__list {
+      justify-content: space-between;
+    }
+    &__button {
+      padding: 2vw;
+      font-size: 2.6vw;
+    }
   }
 }
 </style>

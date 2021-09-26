@@ -46,7 +46,6 @@ export default {
 }
 @import url("./assets/css/all.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap");
-@import url("./assets/scss/_mixins.scss");
 * {
   margin: 0;
   padding: 0;
@@ -69,11 +68,15 @@ body {
   background: #e5e5e5;
   color: $text-black;
   padding: 50px 0;
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 main {
+  position: relative;
   margin: 0 auto;
   max-width: var(--container-width);
-  width: 98%;
+  width: 96%;
 }
 .search-component {
   width: 100%;
@@ -108,22 +111,25 @@ main {
   justify-content: space-between;
   align-items: flex-start;
 }
+@media (max-width: 1200px) {
+  .info-component,
+  .form-component {
+    flex-basis: calc(100% - 288px);
+  }
+}
 @media (max-width: 1024px) {
   .form-component,
   .info-component {
     flex-basis: 100%;
     max-width: unset;
   }
-  .menu-component {
-    display: none;
+  .row {
+    position: static;
   }
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 768px) {
   body {
-    padding: 10px 0;
-  }
-  .form-component {
-    overflow: hidden;
+    padding: 2vw 0;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <section class="info">
     <div class="info__row info__top">
       <div class="info__left">
-        <h6><i class="fal fa-dollar-sign"></i> <span>Donation</span></h6>
+        <h6><span>Donation</span></h6>
         <div class="info__values">
           <span class="info__current-value">€20.60 EUR</span>
           <span class="info__converted-value">≈ $22.22 USD</span>
@@ -73,9 +73,13 @@ export default {
   }
   &__left {
     h6 {
+      position: relative;
       font-size: 14px;
+      line-height: 20px;
       font-weight: normal;
       margin-bottom: 5px;
+      padding-left: 26px;
+      background: url(../assets/img/dollar.svg) no-repeat 0 50%;
     }
   }
   &__right {
@@ -96,7 +100,6 @@ export default {
   &__id-text {
     color: #919293;
     margin-bottom: 4px;
-    font-size: 16px;
     line-height: 20px;
   }
   &__id-value {
@@ -130,6 +133,7 @@ export default {
   }
   &__copy-btn {
     border: none;
+    cursor: pointer;
     background-color: transparent;
     margin-left: 9.5px;
     &:hover i {
@@ -149,6 +153,46 @@ export default {
     font-size: 16px;
     line-height: 24px;
     color: $green;
+  }
+}
+@media screen and (max-width: 768px) {
+  .info {
+    margin-bottom: 3vw;
+  }
+}
+@media (max-width: 540px) {
+  .info {
+    &__list-item {
+      &:not(:last-child) {
+        padding-right: 5vw;
+        margin-right: 5vw;
+      }
+    }
+    &__top {
+      padding: 3.5vw 4vw;
+    }
+    &__bottom {
+      padding: 3vw;
+      padding-left: 5vw;
+    }
+    &__current-value {
+      font-size: 5vw;
+      line-height: 6vw;
+    }
+    &__converted-value {
+      font-size: 3.5vw;
+      line-height: 6vw;
+    }
+    &__id {
+      &-text,
+      &-value {
+        font-size: 14px;
+      }
+    }
+  }
+  .status__state {
+    font-size: 3vw;
+    line-height: 4.4vw;
   }
 }
 </style>

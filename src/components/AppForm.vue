@@ -29,6 +29,8 @@ export default {
 }
 @media screen and (max-width: 540px) {
   .form-component {
+    padding-top: 3.5vw;
+    overflow: hidden;
     &__tabs {
       padding: 0 10px;
     }

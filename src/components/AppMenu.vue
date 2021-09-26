@@ -1,8 +1,15 @@
 <template>
-  <button v-if="hideMenu" class="btn show-btn">
-    <i class="fal fa-bars"></i> MENU
+  <button
+    @click="showMenu = !showMenu"
+    v-if="showBtn"
+    id="menu-btn"
+    title="Open Menu"
+    class="btn btn-menu"
+  >
+    <span v-if="!showMenu">Menu</span>
+    <i v-else class="fal fa-times"></i>
   </button>
-  <aside v-else class="menu">
+  <aside v-if="showMenu" class="menu">
     <nav>
       <ul class="menu__list">
         <li class="menu__item" v-for="item in items" :key="item.id">
@@ -15,6 +22,7 @@
   </aside>
 </template>
 <script>
+import { ref, onMounted, watch } from "vue";
 export default {
   setup() {
     const items = [
@@ -39,8 +47,16 @@ export default {
         imagePath: require("../assets/img/cancel.svg"),
       },
     ];
-    let hideMenu = false;
-    return { items, hideMenu };
+    let showBtn = ref(true);
+    let showMenu = ref(false);
+    onMounted(() => {
+      if (window.innerWidth > 1024) {
+        showBtn.value = false;
+        showMenu.value = true;
+      }
+    });
+
+    return { items, showBtn, showMenu };
   },
 };
 </script>
@@ -51,6 +67,9 @@ export default {
   right: 0;
   box-shadow: 1px 3px 3px rgba(62, 63, 64, 0.1);
   box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 264px;
   nav {
     width: 100%;
   }
@@ -63,14 +82,6 @@ export default {
 
     &:not(:last-child) {
       border-bottom: 1px solid $border-grey;
-    }
-    &:first-child button {
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-    }
-    &:last-child button {
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
     }
     button {
       background: #ffffff;
@@ -96,6 +107,30 @@ export default {
         background-color: #f3f3f3;
       }
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .menu {
+    position: absolute;
+    top: calc(3vw + 34px);
+    right: 20px;
+  }
+  .btn-menu {
+    padding: 5px 10px;
+    position: absolute;
+    top: 3vw;
+    font-size: 14px;
+    right: 20px;
+    margin: 0;
+    transition: 0.3s;
+    box-sizing: border-box;
+    min-width: 55px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $border-grey;
   }
 }
 </style>

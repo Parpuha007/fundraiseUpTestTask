@@ -13,7 +13,7 @@
       </div>
       <div class="form__container">
         <label class="form__left-side" for="goal">Goal </label>
-        <div class="form__right-side">
+        <div class="form__right-side form__right-side_nowrap">
           <input type="text" value="$10.00" id="goal" />
           <select name="currency" id="currency">
             <option value="USD">USD</option>
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="form__container">
-        <label class="form__left-side form__left-side_lh-decrease" for="radio1"
+        <label class="form__left-side form__left-side_lh-decrease"
           >Default Amount</label
         >
         <div class="form__right-side">
@@ -56,7 +56,7 @@
           class="form__left-side form__left-side_lh-decrease"
           >Border size</label
         >
-        <div class="form__right-side_range">
+        <div class="form__right-side form__right-side_range">
           <input
             v-model="borderSizeValue"
             min="0"
@@ -74,7 +74,7 @@
           class="form__left-side form__left-side_lh-decrease"
           >Border radius</label
         >
-        <div class="form__right-side_range">
+        <div class="form__right-side form__right-side_range">
           <input
             v-model="borderRadiusValue"
             min="0"
@@ -125,7 +125,7 @@ export default {
 .form {
   &__buttons-container {
     display: flex;
-    border: 1px solid $border-grey;
+    border-top: 1px solid $border-grey;
     box-sizing: border-box;
     border-radius: 0px 0px 8px 8px;
     background: $sand;
@@ -169,6 +169,9 @@ export default {
       span {
         margin-left: 16px;
       }
+    }
+    &_nowrap {
+      flex-wrap: nowrap;
     }
   }
   input[type="text"],
@@ -324,11 +327,12 @@ export default {
 }
 #goal {
   display: flex;
-  flex-basis: 192px;
+  flex: 1 1 192px;
 }
 #currency {
   display: flex;
-  flex-basis: 80px;
+  margin-left: 15px;
+  flex: 1 0 80px;
 }
 .btn {
   font-size: 16px;
@@ -359,16 +363,46 @@ export default {
 }
 @media screen and (max-width: 540px) {
   .form {
+    padding-top: 5vw;
     &__wrapper {
       padding: 0;
     }
     &__container {
       flex-direction: column;
       align-items: center;
+      &:not(:last-child) {
+        margin-bottom: 3vw;
+      }
     }
     &__left-side,
     &__right-side {
       flex-basis: unset;
+    }
+    &__left-side {
+      margin-right: unset;
+      margin-bottom: 1vw;
+      line-height: 24px;
+    }
+    &__right-side {
+      width: 100%;
+      max-width: 90vw;
+    }
+    #currency {
+      margin-left: 3vw;
+    }
+    input[type="range"] {
+      width: 80%;
+    }
+    &__buttons-container {
+      margin-top: 5vw;
+      padding: 3vw 0;
+      justify-content: center;
+    }
+  }
+  .btn {
+    margin-right: unset;
+    &:first-child {
+      margin-right: 7vw;
     }
   }
 }
