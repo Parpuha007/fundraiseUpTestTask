@@ -20,4 +20,14 @@ export default {
   line-height: 24px;
   color: $violet;
 }
+@media screen and (max-width: 540px) {
+  .description {
+    font-size: 3vw;
+    line-height: 4.4vw;
+  }
+  .name {
+    font-size: 2.8vw;
+    line-height: 4vw;
+  }
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
   <section class="form-component">
     <form-tabs class="form-component__tabs" />
+    <!-- <component :is='name'></component> в будущем -->
     <form-behavior class="form-component__behavior" />
   </section>
 </template>
@@ -22,10 +23,17 @@ export default {
     padding-left: 24px;
   }
   &__behavior {
-    padding-top: 40px;
-    padding-left: 60px;
     border-top: 1px solid $border-grey;
     margin-top: -1px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .form-component {
+    padding-top: 3.5vw;
+    overflow: hidden;
+    &__tabs {
+      padding: 0 10px;
+    }
   }
 }
 </style>
